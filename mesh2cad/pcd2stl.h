@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include"../czxDependence/czxTool.h"
 class pcd2stl
 {

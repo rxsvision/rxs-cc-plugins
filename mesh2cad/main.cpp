@@ -1,4 +1,4 @@
-#include"pcd2stl.h"
+ï»¿#include"pcd2stl.h"
 #include <TopoDS_Shape.hxx>
 #include <BRepBuilderAPI_MakeSolid.hxx>
 #include <StlAPI_Reader.hxx>
@@ -6,7 +6,7 @@
 
 int main(int argc, char* argv[])
 {
-    // Step 1: ¶ÁÈ¡ PCD µãÔÆÊı¾İ
+    // Step 1: è¯»å– PCD ç‚¹äº‘æ•°æ®
     pcl::PointCloud<pcl::PointXYZ>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZ>());
     if (pcl::io::loadPCDFile<pcl::PointXYZ>("small.pcd", *cloud) == -1)
     {
@@ -19,11 +19,11 @@ int main(int argc, char* argv[])
 
     TopoDS_Shape shape;
 
-    // ¶ÁÈ¡ STL ÎÄ¼ş
+    // è¯»å– STL æ–‡ä»¶
     StlAPI_Reader reader;
     reader.Read(shape, "output_mesh.stl");
 
-    // µ¼³öÎª STEP ÎÄ¼ş
+    // å¯¼å‡ºä¸º STEP æ–‡ä»¶
     STEPControl_Writer writer;
     writer.Transfer(shape, STEPControl_AsIs);
     writer.Write("output.step");

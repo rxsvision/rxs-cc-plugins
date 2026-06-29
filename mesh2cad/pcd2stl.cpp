@@ -1,4 +1,4 @@
-#include "pcd2stl.h"
+ï»¿#include "pcd2stl.h"
 
 #include <pcl/features/normal_3d.h>
 #include <vtkSmartPointer.h>
@@ -28,7 +28,7 @@ pcl::PointCloud<pcl::PointNormal>::Ptr pcd2stl::computeNormal(pcl::PointCloud<pc
     pcl::PointCloud<pcl::Normal>::Ptr normals(new pcl::PointCloud<pcl::Normal>);
     ne.compute(*normals);
 
-    // ½«µãÔÆºÍ·¨ÏßºÏ²¢
+    // å°†ç‚¹äº‘å’Œæ³•çº¿åˆå¹¶
     pcl::PointCloud<pcl::PointNormal>::Ptr cloud_with_normals(new pcl::PointCloud<pcl::PointNormal>);
     pcl::concatenateFields(*cloud, *normals, *cloud_with_normals);
 
@@ -55,7 +55,7 @@ void pcd2stl::reconstructionPoisson()
     CzxTimer _(__func__);
     pcl::Poisson<pcl::PointNormal> poisson;
     poisson.setInputCloud(cloud_normal_);
-    poisson.setDepth(9); // ¿ØÖÆÖØ½¨Ï¸½ÚµÄ²ÎÊı
+    poisson.setDepth(9); // æ§åˆ¶é‡å»ºç»†èŠ‚çš„å‚æ•°
     poisson.reconstruct(mesh_);
 }
 
