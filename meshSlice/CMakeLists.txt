@@ -5,17 +5,25 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(PCL REQUIRED COMPONENTS common io)
+find_package(VTK REQUIRED)
 
 add_executable(${PROJECT_NAME}
     源.cpp
+    ${CMAKE_SOURCE_DIR}/czxDependence/czxTool.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_SOURCE_DIR}/czxDependence
     ${PCL_INCLUDE_DIRS}
+    ${VTK_INCLUDE_DIRS}
 )
 
-target_link_libraries(${PROJECT_NAME} PRIVATE ${PCL_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} PRIVATE ${PCL_LIBRARIES} ${VTK_LIBRARIES})
+vtk_module_autoinit(
+    TARGETS ${PROJECT_NAME}
+    MODULES ${VTK_LIBRARIES}
+)
 
 if(MSVC)
     target_compile_definitions(${PROJECT_NAME} PRIVATE _CRT_SECURE_NO_WARNINGS NOMINMAX)
